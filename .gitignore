@@ -1,6 +1,7 @@
 /catalog-private.pem
 /catalog-payload.json
 /audio-link-linux-arm64
+/audio-link-test.exe
 /audio-link.aliceplugin
 /publish/
 /gocache/

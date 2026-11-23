@@ -19,7 +19,7 @@ def text(ru, en):
 elf = (root / 'audio-link-linux-arm64').read_bytes()
 assert elf[:7] == b'\x7fELF\x02\x01\x01' and elf[18:20] == b'\xb7\x00'
 manifest = {
-    'format': 1, 'id': 'anaxanation.audio-link', 'version': '0.2.0', 'api': 2,
+    'format': 1, 'id': 'anaxanation.audio-link', 'version': '0.2.1', 'api': 2,
     'engine': 'native', 'title': text('Audio Link', 'Audio Link'),
     'description': text('Передача PCM между колонками. Захват штатного звука требует ALSA Loopback.',
                         'PCM relay between speakers. Native output capture requires ALSA Loopback.'),
@@ -54,7 +54,7 @@ stamp = datetime.now(timezone.utc).replace(microsecond=0)
 def iso(value):
     return value.isoformat().replace('+00:00', 'Z')
 
-catalog = {'format': 1, 'revision': 1, 'generated_at': iso(stamp),
+catalog = {'format': 1, 'revision': 2, 'generated_at': iso(stamp),
            'expires_at': iso(stamp + timedelta(days=365)), 'revoked': [],
            'entries': [{'manifest': manifest, 'sha256': digest, 'bytes': package.stat().st_size,
                         'download': f'../packages/{name}', 'reviewed_at': iso(stamp)}]}

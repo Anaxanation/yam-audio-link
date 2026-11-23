@@ -39,6 +39,14 @@ func main() {
 	if err == nil {
 		err = run(ctx, config)
 	}
+	if err == nil && config.Mode == "test" && ctx.Err() == nil {
+		fmt.Println("Test PCM sent: 3 seconds. Check the receiver for delivery.")
+		if len(os.Args) == 1 {
+			// Homebrew expects an enabled native plugin to keep running.
+			// Wait without sending more audio. Disabling cancels the context.
+			<-ctx.Done()
+		}
+	}
 	if err != nil && ctx.Err() == nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
